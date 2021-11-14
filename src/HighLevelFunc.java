@@ -15,6 +15,7 @@ public abstract class HighLevelFunc
 	
 	public boolean isCalled(String statement)
 	{
+		// testing
 		return name.equalsIgnoreCase(statement.split(" ")[0]);
 	}
 	
