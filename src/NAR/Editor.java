@@ -1,8 +1,14 @@
+package NAR;
 import javax.swing.*;
 import javax.swing.text.*;
 
 import java.awt.*;
 import java.awt.event.*;
+
+import java.util.List;
+
+//this line includes the Parser used for test 2 and will be removed from the final build
+import TestCodeFiles.EditorTests.Test2.Parser; 
 
 public class Editor 
 {
@@ -65,8 +71,7 @@ public class Editor
 			//exact implementation of this function will need to be changed
 			public void actionPerformed(ActionEvent e) {
 				Editor.clearConsole();
-				Editor.printToConsole("Help button was clicked");
-				System.out.println("Help button was clicked");
+				Editor.displayHelpInformation();
 			}
 		});
 		
@@ -113,6 +118,16 @@ public class Editor
 		Instance.outputConsole.setText("");
 	}
 	
+	private static void displayHelpInformation() 
+	{
+		List<HighLevelFunc> constructs = Parser.getFuncList();
+		
+		for (HighLevelFunc func : constructs) 
+		{
+			printToConsole(func.getHelpInformation());
+		}
+	}
+	
 	private static String getCodeStr() 
 	{
 		try 
@@ -125,11 +140,5 @@ public class Editor
 			//the document to retrieve it's content
 			return ""; 
 		}
-	}
-	
-	public static void main(String args[]) {
-		run();
-		printToConsole("hello");
-		printToConsole("new line");
 	}
 }

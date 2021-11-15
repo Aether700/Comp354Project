@@ -1,6 +1,7 @@
+package NAR;
 
 // abstract class representing a high level construct
-public abstract class HighLevelFunc 
+public abstract class HighLevelFunc
 {
 	private String name;
 	
