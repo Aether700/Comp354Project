@@ -40,4 +40,6 @@ public class Parser
 		Editor.printToConsole("Unknown construct '" + calledConstructName + "' found.");
 		return false;
 	}
+	
+	public static List<HighLevelFunc> getFuncList() { return Instance.constructs; }
 }
