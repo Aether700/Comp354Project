@@ -2,6 +2,8 @@ package NAR;
 import java.util.ArrayList;
 import java.util.List;
 
+import NAR.Constructs.*;
+
 public class Parser 
 {
 	private static Parser Instance = new Parser();
@@ -13,6 +15,7 @@ public class Parser
 		constructs = new ArrayList<HighLevelFunc>();
 		
 		//initialize and add HighLevelFunc objects here 
+		constructs.add(new IfElseConstruct());
 	}
 	
 	public static boolean checkUserInput(String statement) 

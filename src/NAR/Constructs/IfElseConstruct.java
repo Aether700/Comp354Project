@@ -24,20 +24,20 @@ public class IfElseConstruct extends HighLevelFunc
 		{
 			String[] components = splitIntoComponents(lowerCase);
 			
-			cond = Condition.getCondition(lowerCase);
+			cond = Condition.getCondition(components[0]);
 			if (cond == null) 
 			{
 				return false;
 			}
 			
 			//check syntax of the construct to execute when the condition is true
-			if (!Parser.checkUserInput(components[1])) 
+			if (!internalStatementHasCorrectSyntax(components[1])) 
 			{
 				return false;
 			}
 			
 			//check syntax of the construct to execute when the condition is false if applicable
-			if (components.length > 2 && !Parser.checkUserInput(components[2])) 
+			if (components.length > 2 && !internalStatementHasCorrectSyntax(components[2])) 
 			{
 				return false;
 			}
@@ -51,7 +51,7 @@ public class IfElseConstruct extends HighLevelFunc
 		String lowerCase = statement.toLowerCase();
 		String[] components = splitIntoComponents(lowerCase);
 		
-		cond.setArgs(statement);
+		cond.setArgs(components[0]);
 		
 		//handle the ifFunc
 		String ifFuncStatement = components[1];
@@ -82,18 +82,19 @@ public class IfElseConstruct extends HighLevelFunc
 		}
 	}
 	
-	//if num/var is not(optional) condition check num/var do function else (optional) function(optional)
 	public String getHelpInformation() 
 	{
-		return "Syntax: if <variable/number> is <optional \"not\"> <condition check> <variable/number> do <construct to execute>\n"
-				+ "or\n"
-				+ "if <variable/number> is <optional \"not\"> <condition check> <variable/number> do <construct to execute> "
-				+ "else do <construct to execute>\n"
-				+ "\n"
-				+ "Executes the first constructs provided if the condition is true otherwise executes the second "
+		return "If/If Else:\n"
+				+ "   Syntax: if <variable/number> is <optional \"not\"> <condition check> "
+				+ "<variable/number> do <construct to execute>\n"
+				+ "   or\n"
+				+ "   if <variable/number> is <optional \"not\"> <condition check> <variable/number> "
+				+ "do <construct to execute> else do <construct to execute>\n"
+				+ "\n   Executes the first constructs provided if the condition is true "
+				+ "otherwise executes the second "
 				+ "construct provided if any was provided\n"
-				+ "\nExample: if 4 is less than 2 do add 3 to 5\n"
-				+ "if X is greater than or equal to 2 do subtract 5 from X else do add 10 to X\n"
+				+ "\n   Example: if 4 is less than 2 do add 3 to 5\n"
+				+ "   if X is greater than or equal to 2 do subtract 5 from X else do add 10 to X\n"
 				+ "\n";
 	}
 
@@ -145,6 +146,25 @@ public class IfElseConstruct extends HighLevelFunc
 			}
 		}
 		return null;
+	}
+	
+	private boolean internalStatementHasCorrectSyntax(String statement) 
+	{
+		List<HighLevelFunc> constructs = Parser.getFuncList();
+		
+		for (HighLevelFunc func : constructs) 
+		{
+			if (func.isCalled(statement)) 
+			{
+				if (func.isCorrectSyntax(statement)) 
+				{
+					return true;
+				}
+				return false;
+			}
+		}
+		
+		return false;
 	}
 	
 	// private helper class which stores the condition to test
@@ -260,7 +280,7 @@ public class IfElseConstruct extends HighLevelFunc
 		//Y is not smaller than 3
 		private static boolean hasProperStructure(String statement) 
 		{
-			final String regexVar = "[0-9a-z]*[a-z][0-9][a-z]*";
+			final String regexVar = "[0-9a-z]*[a-z][0-9a-z]*";
 			String lowerCase = statement.toLowerCase().trim();
 			
 			
@@ -381,7 +401,8 @@ public class IfElseConstruct extends HighLevelFunc
 			
 			try 
 			{
-				return Double.parseDouble(statement);
+				double val = Double.parseDouble(statement);
+				return val;
 			}
 			catch(NumberFormatException num) 
 			{

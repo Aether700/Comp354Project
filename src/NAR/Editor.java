@@ -7,9 +7,6 @@ import java.awt.event.*;
 
 import java.util.List;
 
-//this line includes the Parser used for test 2 and will be removed from the final build
-import TestCodeFiles.EditorTests.Test2.Parser; 
-
 public class Editor 
 {
 	private static Editor Instance = new Editor();
