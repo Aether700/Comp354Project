@@ -5,11 +5,19 @@ import NAR.HighLevelFunc;
 import NAR.Parser;
 
 public class SquareRootConstruct extends HighLevelFunc {
-    private int op1, op2, result;
+    private int op1, result;
 
     public SquareRootConstruct() {
-        super("square");//putting square root gives unknown construct
+        super("square root");
     }
+    
+    public boolean isCalled(String statement) 
+    {
+    	String[] splitStrArr = statement.split(" ");
+    	return splitStrArr[0].equalsIgnoreCase("square") 
+    			&& splitStrArr[0].equalsIgnoreCase("root");
+    }
+    
     @Override
     public boolean isCorrectSyntax(String statement) {
         String lowerCase = statement.toLowerCase();
@@ -53,11 +61,8 @@ public class SquareRootConstruct extends HighLevelFunc {
     private String[] splitIntoComponents(String str) {
         String[] components = new String[2];
 
-
         int first = str.indexOf("square root of ");
-
         components[0] = str.substring(first + 15).trim(); //retrieve condition
-
 
         return components;
     }
