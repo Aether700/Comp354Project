@@ -1,13 +1,18 @@
 package NAR;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class RunTime {
+public class RuntimeSystem {
+	
+	private static RuntimeSystem Instance = new RuntimeSystem();
+	RuntimeSystem() {}
+	
+	
+	private List listOfLines(String str) {
 
-	public ArrayList<String> listOfLines(String str) {
-
-		ArrayList<String> lines = new ArrayList<>();
+		List<String> lines = new ArrayList<>();
 		Scanner scanner = new Scanner(str);
 
 		while (scanner.hasNextLine()) {
@@ -19,7 +24,7 @@ public class RunTime {
 		return lines;
 	}
 
-	public String splitLine(String str) {
+	private String reduceSpace(String str) {
 
 		String line = str.replaceAll("\\s +", " ");
 
@@ -40,35 +45,27 @@ public class RunTime {
 		return Character.isWhitespace(fChar);
 	}
 
-	public static boolean isLengthGreaterThanZero(String str) {
+	private static boolean isLengthGreaterThanZero(String str) {
 
-		return str.length() > 0 && str != null;
+		return str != null && str.length() > 0;
 	}
 
-	private boolean isSyntaxCorrect(String str) {
-		// call parser method checkUserInput
-		//return Parser.checkUserInput(str);
-		return true;
-	}
 
 	public void runCode(String str) {
 
-		ArrayList<String> lines = listOfLines(str);
+		List<String> lines = Instance.listOfLines(str);
 
 		for (String line : lines) {
 
-			String statement = splitLine(line);
+			String statement = Instance.reduceSpace(line);
 
-			if (isLengthGreaterThanZero(statement)) {
+			if (Instance.isLengthGreaterThanZero(statement)) {
 
-				
-
-				if (!isSyntaxCorrect(statement)) {
-
-					System.out.print("!!! syntax error");
+				System.out.print(statement);
+                //check if the syntax is correct
+				if (!Parser.checkUserInput(statement)) {
 					break;
 				}
-				System.out.println(statement);
 			}
 
 		}
