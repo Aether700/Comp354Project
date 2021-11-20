@@ -60,7 +60,7 @@ public class RuntimeSystem {
 			String statement = reduceSpace(line);
 
 			if (isLengthGreaterThanZero(statement)) {
-                                 //check if the syntax is correct
+				//check if the syntax is correct
 				if (!Parser.checkUserInput(statement)) {
 					break;
 				}
@@ -68,6 +68,5 @@ public class RuntimeSystem {
 
 		}
 	}
-
 }
 
