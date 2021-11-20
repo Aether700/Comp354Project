@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class RuntimeSystem {
 	
 	private static RuntimeSystem Instance = new RuntimeSystem();
-	RuntimeSystem() {}
+	private RuntimeSystem() {}
 	
 	
-	private List listOfLines(String str) {
+	private static List<String> listOfLines(String str) {
 
 		List<String> lines = new ArrayList<>();
 		Scanner scanner = new Scanner(str);
@@ -24,7 +24,7 @@ public class RuntimeSystem {
 		return lines;
 	}
 
-	private String reduceSpace(String str) {
+	private static String reduceSpace(String str) {
 
 		String line = str.replaceAll("\\s +", " ");
 
@@ -51,17 +51,16 @@ public class RuntimeSystem {
 	}
 
 
-	public void runCode(String str) {
+	public static void runCode(String str) {
 
-		List<String> lines = Instance.listOfLines(str);
+		List<String> lines = listOfLines(str);
 
 		for (String line : lines) {
 
-			String statement = Instance.reduceSpace(line);
+			String statement = reduceSpace(line);
 
-			if (Instance.isLengthGreaterThanZero(statement)) {
-
-                                     //check if the syntax is correct
+			if (isLengthGreaterThanZero(statement)) {
+                                 //check if the syntax is correct
 				if (!Parser.checkUserInput(statement)) {
 					break;
 				}
@@ -71,3 +70,4 @@ public class RuntimeSystem {
 	}
 
 }
+
