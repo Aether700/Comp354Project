@@ -61,8 +61,7 @@ public class RuntimeSystem {
 
 			if (Instance.isLengthGreaterThanZero(statement)) {
 
-				//System.out.print(statement);
-                //check if the syntax is correct
+                                     //check if the syntax is correct
 				if (!Parser.checkUserInput(statement)) {
 					break;
 				}
