@@ -8,11 +8,11 @@ public class Test2Driver {
 		
 		List<String> inputs=new ArrayList<String>();  
 		
-		inputs.add("statement\n"+"statement\n"+""+"wrong\n"+"statement\n"); //input 1
-		inputs.add("wrong\n"+"statement\n"+"statement\n"+"statement\n"+"statement\n"); //input 2
-		inputs.add("statement\n"+"statement\n"+"wrong\n"+"wrong\n"+"statement\n"+"statement\n"); //input 3
-		inputs.add(""); //input 4
-		inputs.add("                                  \n"+"                 \n"); //input 5
+		inputs.add("statement\n"+"statement\n"+""+"wrong\n"); //input 1
+		inputs.add("wrong\n"+"statement\n"+"statement\n"+"statement\n"); //input 2
+		inputs.add("statement\n"+"statement\n"+"wrong\n"+"statement\n"); //input 3
+		inputs.add("statement\n"+"statement\n"+"wrong\n"+"wrong\n"+"statement\n"+"statement\n"); //input 4
+		inputs.add("wrong\n"+"wrong\n"); //input 5
 		
 		int i=1;
 		
@@ -25,3 +25,4 @@ public class Test2Driver {
 		}
 	}
 }
+
