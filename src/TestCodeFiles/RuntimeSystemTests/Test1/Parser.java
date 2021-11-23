@@ -1,8 +1,8 @@
 package TestCodeFiles.RuntimeSystem.Test1;
 
+// Dummy singleton parser class used to test the RunTime
 public class Parser {
 
-	// Dummy singleton parser class used to test the RunTime
 	private static Parser Instance = new Parser();
 
 	private Parser() {
