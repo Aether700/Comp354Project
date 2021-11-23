@@ -1,9 +1,9 @@
-package TestCodeFiles.RuntimeSystem.Test1;
+package TestCodeFiles.RuntimeSystemTests.Test1;
 
 import java.util.ArrayList;
 import java.util.List;
 //In runTime test1 we assume all the input commands have correct syntax
-public class Test2Driver {
+public class Test1Driver {
 	public static void main(String[] args) {
 		
 		List<String> inputs=new ArrayList<String>();  
