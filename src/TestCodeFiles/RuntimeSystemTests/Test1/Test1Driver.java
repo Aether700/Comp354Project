@@ -18,10 +18,9 @@ public class Test2Driver {
 		
 		for (String input:inputs) {
 			
-		System.out.println("output of input "+i++ +":\n");
-		RuntimeSystem.runCode(input);
-		System.out.println();
-		
+			System.out.println("output of input "+i++ +":\n");
+			RuntimeSystem.runCode(input);
+			System.out.println();
 		}
 	}
 }
