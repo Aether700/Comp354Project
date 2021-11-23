@@ -1,4 +1,4 @@
-package TestCodeFiles.RuntimeSystem.Test2;
+package TestCodeFiles.RuntimeSystemTests.Test2;
 
 import java.util.ArrayList;
 import java.util.List;
