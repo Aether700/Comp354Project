@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 /* importing the exact RunTimeSystem class from NAR package to get implemented 
-with dummy Parser class in TestCodeFiles.RuntimeSystem.Test2 */
+with dummy Parser class in TestCodeFiles.RuntimeSystemTests.Test2 */
 
 public class RuntimeSystem {
 	
