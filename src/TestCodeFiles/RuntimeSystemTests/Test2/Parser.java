@@ -1,4 +1,4 @@
-package TestCodeFiles.RuntimeSystem.Test2;
+package TestCodeFiles.RuntimeSystemTests.Test2;
 
 // Dummy singleton Parser class used to test the RunTime
 public class Parser {
