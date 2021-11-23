@@ -59,10 +59,6 @@ public class Parser
 	 * @return
 	 */
 	public static boolean isVarDefined(String variable) {
-		if(variable == null) {
-			Editor.printToConsole("Variable is null.");
-			return false;
-		}
 		return Instance.variables.containsKey(variable);
 	}
 	
@@ -74,10 +70,6 @@ public class Parser
 	 * @param value
 	 */
 	public static void defineVar(String variable, double value) {
-		if(variable == null) { 
-			Editor.printToConsole("Variable is null.");
-			return;
-		}
 		Instance.variables.put(variable, value);
 	}
 	
@@ -85,15 +77,11 @@ public class Parser
 	 * This method takes a variable name as input and 
 	 * returns the numeric value associated with it.
 	 * @param variable
-	 * @return
+	 * @return value of variable
+	 * @throws NullPointerException if variable is null
 	 */
-	public static double getVarValue(String variable) {
-		if(variable == null || ! isVarDefined(variable)) { 
-			Editor.printToConsole("Variable is null or undefined. Returning 0.");
-			return 0;
-		} else {
-			return Instance.variables.get(variable);
-		}	
+	public static double getVarValue(String variable) throws NullPointerException {
+		return Instance.variables.get(variable);
 	}
 	
 	/**
