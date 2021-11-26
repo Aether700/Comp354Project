@@ -1,8 +1,8 @@
-package TestCodeFiles.ParserTests;
+package TestCodeFiles.ParserTests.Test2;
 
 import NAR.Parser;
 
-public class ParserTestDriver {
+public class ParserTest2Driver {
 	public static void main(String[] args) 
 	{
 		System.out.println("Tests:");
@@ -10,9 +10,7 @@ public class ParserTestDriver {
 		try {
 			System.out.println(Parser.getVarValue("Y"));
 		}
-		catch (NullPointerException e) { 
-			System.out.println("Variable is not defined");
-		}
+		catch (NullPointerException e) {}
 		System.out.println(Parser.isVarDefined("Y"));
 		System.out.println(Parser.isVarDefined("X"));
 		System.out.println(Parser.getVarValue("X"));
@@ -22,8 +20,9 @@ public class ParserTestDriver {
 		Parser.defineVar("X", Parser.getVarValue("Y"));
 		System.out.println(Parser.getVarValue("X"));
 		
+		// Check if test results are same as expected values
 		System.out.println("\nExpected values:");
-		System.out.println("Variable is not defined");
+		System.out.println("Y is not defined");
 		System.out.println(false);
 		System.out.println(true);
 		System.out.println(20);
