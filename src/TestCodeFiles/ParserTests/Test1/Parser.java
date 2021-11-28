@@ -1,8 +1,11 @@
-package NAR;
+package TestCodeFiles.ParserTests.Test1;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import NAR.HighLevelFunc;
+
+//Dummy singleton parser class with dummy HighLevelFunc objects used to test the parser
 public class Parser 
 {
 	private static Parser Instance = new Parser();
@@ -14,8 +17,12 @@ public class Parser
 	{
 		constructs = new ArrayList<HighLevelFunc>();
 		variables = new HashMap<String, Double>();
-		
-		//initialize and add HighLevelFunc objects here 
+	}
+	
+	public static void Initialize() 
+	{
+		Instance.constructs.add(new Add());
+		Instance.constructs.add(new Test());
 	}
 	
 	/**
@@ -48,7 +55,7 @@ public class Parser
 		
 		//if no valid construct found print an error message and return false
 		String calledConstructName = statement.split(" ")[0];
-		Editor.printToConsole("Unknown construct '" + calledConstructName + "' found.");
+		System.out.println("Unknown construct '" + calledConstructName + "' found.");
 		return false;
 	}
 	
