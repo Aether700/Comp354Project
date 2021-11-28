@@ -164,6 +164,7 @@ public class IfElseConstruct extends HighLevelFunc
 			}
 		}
 		
+		Editor.printToConsole("Unknown construct \'" + statement + "\'");
 		return false;
 	}
 	
@@ -287,12 +288,21 @@ public class IfElseConstruct extends HighLevelFunc
 			//check both numbers
 			//\u0020 checks for the space character using it's Unicode in hexadecimal
 			if (lowerCase.matches("^-?[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$") 
-					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$")) 
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$")
+					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$")
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$")
+					|| lowerCase.matches("^-?[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$") 
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+\\.[0-9]+$")
+					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+\\.[0-9]$")
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+\\.[0-9]+$")) 
 			{
 				return true;
 			}
 			else if (lowerCase.matches("^" + regexVar + " is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$") // check for var then number
-					|| lowerCase.matches("^" + regexVar + " is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$"))
+					|| lowerCase.matches("^" + regexVar + " is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+\\.[0-9]+$")
+					|| lowerCase.matches("^" + regexVar + " is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$")
+					|| lowerCase.matches("^" + regexVar 
+							+ " is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+\\.[0-9]+$"))
 			{
 				String[] components = splitIntoComponents(lowerCase);
 				if (Parser.isVarDefined(components[0])) 
@@ -306,7 +316,9 @@ public class IfElseConstruct extends HighLevelFunc
 				}
 			}
 			else if  (lowerCase.matches("^-?[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$") // check for number then var
-					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$"))
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$")
+					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$")
+					|| lowerCase.matches("^-?[0-9]+\\.[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$"))
 			{
 				String[] components = splitIntoComponents(lowerCase);
 				if (Parser.isVarDefined(components[2])) 

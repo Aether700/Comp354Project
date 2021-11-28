@@ -5,7 +5,6 @@ import java.util.List;
 
 import NAR.Constructs.IfElseConstruct;
 
-
 public class Parser 
 {
 	private static Parser Instance = new Parser();
