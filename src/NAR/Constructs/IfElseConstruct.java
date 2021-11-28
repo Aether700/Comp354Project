@@ -8,8 +8,8 @@ import java.util.List;
 
 public class IfElseConstruct extends HighLevelFunc
 {
-	private HighLevelFunc ifFunc;
-	private HighLevelFunc elseFunc;
+	private String ifFuncStatement;
+	private String elseFuncStatement;
 	private Condition cond;
 	
 	public IfElseConstruct() 
@@ -54,19 +54,15 @@ public class IfElseConstruct extends HighLevelFunc
 		cond.setArgs(components[0]);
 		
 		//handle the ifFunc
-		String ifFuncStatement = components[1];
-		ifFunc = findHighLevelFunc(ifFuncStatement);
-		ifFunc.setArgs(ifFuncStatement);
+		ifFuncStatement = components[1];
 		
 		if (components.length > 2) 
 		{
-			String elseFuncStatement = components[2];
-			elseFunc = findHighLevelFunc(elseFuncStatement);
-			elseFunc.setArgs(elseFuncStatement);
+			elseFuncStatement = components[2];
 		}
 		else 
 		{
-			elseFunc = null;
+			elseFuncStatement = null;
 		}
 	}
 	
@@ -74,11 +70,15 @@ public class IfElseConstruct extends HighLevelFunc
 	{
 		if (cond.isTrue()) 
 		{
-			ifFunc.execute();
+			HighLevelFunc func = findHighLevelFunc(ifFuncStatement);
+			func.setArgs(ifFuncStatement);
+			func.execute();
 		}
-		else if (elseFunc != null) 
+		else if (elseFuncStatement != null) 
 		{
-			elseFunc.execute();
+			HighLevelFunc func = findHighLevelFunc(elseFuncStatement);
+			func.setArgs(elseFuncStatement);
+			func.execute();
 		}
 	}
 	
@@ -294,7 +294,6 @@ public class IfElseConstruct extends HighLevelFunc
 			else if (lowerCase.matches("^" + regexVar + " is [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$") // check for var then number
 					|| lowerCase.matches("^" + regexVar + " is not [a-z]+[a-z\\u0020]+[a-z] -?[0-9]+$"))
 			{
-				/*commented out since isVarDefined has not yet been implemented. will need to be tested
 				String[] components = splitIntoComponents(lowerCase);
 				if (Parser.isVarDefined(components[0])) 
 				{
@@ -305,16 +304,10 @@ public class IfElseConstruct extends HighLevelFunc
 					Editor.printToConsole("Unknown token \'" + components[0] + "\'");
 					return false;
 				}
-				*/
-				
-				//temporary while isVarDefined is not defined
-				Editor.printToConsole("Variables are not yet supported: \'" + statement + "\'");
-				return false; 
 			}
 			else if  (lowerCase.matches("^-?[0-9]+ is [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$") // check for number then var
 					|| lowerCase.matches("^-?[0-9]+ is not [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$"))
 			{
-				/*commented out since isVarDefined has not yet been implemented. will need to be tested
 				String[] components = splitIntoComponents(lowerCase);
 				if (Parser.isVarDefined(components[2])) 
 				{
@@ -325,22 +318,12 @@ public class IfElseConstruct extends HighLevelFunc
 					Editor.printToConsole("Unknown token \'" + components[2] + "\'");
 					return false;
 				}
-				*/
-				
-				//temporary while isVarDefined is not defined
-				Editor.printToConsole("Variables are not yet supported: \'" + statement + "\'");
-				return false; 
 			}
 			else if  (lowerCase.matches("^" + regexVar + " is [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$")  //check for both var
 					|| lowerCase.matches("^" + regexVar + " is not [a-z]+[a-z\\u0020]+[a-z] " + regexVar + "$"))
 			{
-				/*commented out since isVarDefined has not yet been implemented. will need to be tested
 				String[] components = splitIntoComponents(lowerCase);
-				if (Parser.isVarDefined(components[0])) 
-				{
-					return true;
-				}
-				else 
+				if (!Parser.isVarDefined(components[0])) 
 				{
 					Editor.printToConsole("Unknown token \'" + components[0] + "\'");
 					return false;
@@ -354,12 +337,7 @@ public class IfElseConstruct extends HighLevelFunc
 				{
 					Editor.printToConsole("Unknown token \'" + components[2] + "\'");
 					return false;
-				}
-				*/
-				
-				//temporary while isVarDefined is not defined
-				Editor.printToConsole("Variables are not yet supported: \'" + statement + "\'");
-				return false; 
+				} 
 			}
 			
 			
@@ -392,12 +370,10 @@ public class IfElseConstruct extends HighLevelFunc
 		//parses the provided statement into a number
 		private static double parseIntoNumber(String statement) 
 		{
-			/* commented out since isVarDefined and getVarValue are not implemented yet, will need to be tested
 			if (Parser.isVarDefined(statement))
 			{
 				return Parser.getVarValue(statement);
 			}
-			*/
 			
 			try 
 			{

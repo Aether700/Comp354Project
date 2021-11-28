@@ -40,9 +40,7 @@ public class Editor
 			//exact implementation of this function will need to be changed
 			public void actionPerformed(ActionEvent e) {
 				Editor.clearConsole();
-				String code = Editor.getCodeStr();
-				Editor.printToConsole(code);
-				System.out.println("Run button pressed: " + code);
+				RuntimeSystem.runCode(Editor.getCodeStr());
 			}
 		});
 		
