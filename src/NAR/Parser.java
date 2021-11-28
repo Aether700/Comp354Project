@@ -67,7 +67,7 @@ public class Parser
 	}
 	
 	/**
-	 * This method takes two parameters, a variable name, and itfs associated number value. 
+	 * This method takes two parameters, a variable name, and it's associated number value. 
 	 * It stores the variable name and number together in internal memory. 
 	 * It also can be used to store a new value for an already defined variable.
 	 * @param variable
