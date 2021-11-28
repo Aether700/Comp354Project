@@ -7,9 +7,6 @@ import java.awt.event.*;
 
 import java.util.List;
 
-//this line includes the Parser used for test 2 and will be removed from the final build
-import TestCodeFiles.EditorTests.Test2.Parser; 
-
 public class Editor 
 {
 	private static Editor Instance = new Editor();
@@ -43,9 +40,7 @@ public class Editor
 			//exact implementation of this function will need to be changed
 			public void actionPerformed(ActionEvent e) {
 				Editor.clearConsole();
-				String code = Editor.getCodeStr();
-				Editor.printToConsole(code);
-				System.out.println("Run button pressed: " + code);
+				RuntimeSystem.runCode(Editor.getCodeStr());
 			}
 		});
 		

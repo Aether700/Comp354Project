@@ -3,6 +3,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import NAR.Constructs.IfElseConstruct;
+
+
 public class Parser 
 {
 	private static Parser Instance = new Parser();
@@ -16,6 +19,7 @@ public class Parser
 		variables = new HashMap<String, Double>();
 		
 		//initialize and add HighLevelFunc objects here 
+		constructs.add(new IfElseConstruct());
 	}
 	
 	/**
@@ -63,7 +67,7 @@ public class Parser
 	}
 	
 	/**
-	 * This method takes two parameters, a variable name, and itÅfs associated number value. 
+	 * This method takes two parameters, a variable name, and it's associated number value. 
 	 * It stores the variable name and number together in internal memory. 
 	 * It also can be used to store a new value for an already defined variable.
 	 * @param variable
