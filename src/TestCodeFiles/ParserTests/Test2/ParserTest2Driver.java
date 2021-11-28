@@ -10,7 +10,9 @@ public class ParserTest2Driver {
 		try {
 			System.out.println(Parser.getVarValue("Y"));
 		}
-		catch (NullPointerException e) {}
+		catch (NullPointerException e) {
+			System.out.println("Y is not defined");
+		}
 		System.out.println(Parser.isVarDefined("Y"));
 		System.out.println(Parser.isVarDefined("X"));
 		System.out.println(Parser.getVarValue("X"));

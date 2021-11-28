@@ -5,6 +5,7 @@ import java.util.List;
 
 import NAR.HighLevelFunc;
 
+//Dummy singleton parser class with dummy HighLevelFunc objects used to test the parser
 public class Parser 
 {
 	private static Parser Instance = new Parser();
@@ -86,13 +87,7 @@ public class Parser
 	 * @return value of variable
 	 */
 	public static double getVarValue(String variable) {
-		try {
-			return Instance.variables.get(variable);
-		}
-		catch (NullPointerException e) {
-			System.out.println(variable + " is not defined.");
-			throw e;
-		}
+		return Instance.variables.get(variable);
 	}
 	
 	/**

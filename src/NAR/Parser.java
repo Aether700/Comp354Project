@@ -80,13 +80,7 @@ public class Parser
 	 * @return value of variable
 	 */
 	public static double getVarValue(String variable) {
-		try {
-			return Instance.variables.get(variable);
-		}
-		catch (NullPointerException e) {
-			System.out.println(variable + " is not defined.");
-			throw e;
-		}
+		return Instance.variables.get(variable);
 	}
 	
 	/**
