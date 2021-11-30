@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import NAR.Constructs.IfElseConstruct;
+import NAR.Constructs.SetConstruct;
 
 public class Parser 
 {
@@ -19,6 +20,7 @@ public class Parser
 		
 		//initialize and add HighLevelFunc objects here 
 		constructs.add(new IfElseConstruct());
+		constructs.add(new SetConstruct());
 	}
 	
 	/**
