@@ -5,7 +5,7 @@ import NAR.HighLevelFunc;
 import NAR.Parser;
 
 public class MultiplyConstruct extends HighLevelFunc {
-    private int op1, op2, result;
+    private double op1, op2, result;
 
     public MultiplyConstruct() {
         super("multiply");
@@ -14,7 +14,7 @@ public class MultiplyConstruct extends HighLevelFunc {
     @Override
     public boolean isCorrectSyntax(String statement) {
         String lowerCase = statement.toLowerCase();
-        if (lowerCase.matches("^multiply -?\\d+ with -?\\d+$")) {
+        if (lowerCase.matches("^multiply (-?\\d+|\\w+|\\d+.\\d+) with (-?\\d+|\\w+|\\d+.\\d+)$")) {
             return true;
             //check syntax of the construct to execute when the condition is true
         }
@@ -22,16 +22,80 @@ public class MultiplyConstruct extends HighLevelFunc {
         //^add \d+ to \d+$
         return false;
     }
+    public Double[] getVariables(String arg1,String arg2)
+    {
 
+        Double vals[]=new Double[2];
+
+        if(Parser.isVarDefined(arg1))
+        {
+            vals[0]=Parser.getVarValue(arg1);
+        }
+        else
+        {
+            vals[0]=null;
+        }
+        if (Parser.isVarDefined(arg2)) {
+            vals[1]=Parser.getVarValue(arg2);
+        }
+        else {
+            vals[1]=null;
+        }
+        return vals;
+    }
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
         //TODO make sure components are not variables or parseInt will crash.
-        op1 = Integer.parseInt(components[0]);
+        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
+        String v1,v2;
+        if (components[0].charAt(0) == '-') {
+            v1 = components[0].substring(1);
+        }
+        else
+        {
+            v1=components[0];
+        }
+        if (components[1].charAt(0) == '-') {
+            v2 = components[1].substring(1);
+        }
+        else
+        {
+            v2=components[1];
+        }
+        Double[] vars=getVariables(v1,v2);
 
-        op2 = Integer.parseInt(components[1]);
+        if(vars[0]!=null)
+        {
+            op1=vars[0];
+            if (components[0].charAt(0) == '-') {
+                op1 = -1 * op1;
+            }
+        }
+        else {
+            if (components[0].charAt(0) == '-') {
+                op1 = -1 * Double.parseDouble(components[0].substring(1));
+            } else {
+                op1 = Double.parseDouble(components[0]);
+            }
+        }
+        if(vars[1]!=null)
+        {
+            op2=vars[1];
+            if (components[1].charAt(0) == '-') {
+                op2 = -1 * op2;
+            }
+        }
+        else {
+            if (components[1].charAt(0) == '-') {
+                op2 = -1 * Double.parseDouble(components[1].substring(1));
+            } else {
+                op2 = Double.parseDouble(components[1]);
+            }
+        }
 
     }
+
 
     @Override
     public void execute() {
@@ -68,7 +132,7 @@ public class MultiplyConstruct extends HighLevelFunc {
         return components;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 
