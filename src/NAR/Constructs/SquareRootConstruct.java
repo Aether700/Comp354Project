@@ -5,7 +5,7 @@ import NAR.HighLevelFunc;
 import NAR.Parser;
 
 public class SquareRootConstruct extends HighLevelFunc {
-    private int op1, op2, result;
+    private double op1, op2, result;
 
     public SquareRootConstruct() {
         super("square");//putting square root gives unknown construct
@@ -13,7 +13,7 @@ public class SquareRootConstruct extends HighLevelFunc {
     @Override
     public boolean isCorrectSyntax(String statement) {
         String lowerCase = statement.toLowerCase();
-        if (lowerCase.matches("^square root of \\d+$")) {
+        if (lowerCase.matches("^square root of (\\d+|\\w+|\\d+.\\d+)$")) {
             return true;
             //check syntax of the construct to execute when the condition is true
         }
@@ -26,8 +26,35 @@ public class SquareRootConstruct extends HighLevelFunc {
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
         //TODO make sure components are not variables or parseInt will crash.
-        op1 = Integer.parseInt(components[0]);
+        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
+        String v1,v2;
+        try {
+            if (components[0].charAt(0) == '-') {
+                v1 = components[0].substring(1);
+            } else {
+                v1 = components[0];
+            }
 
+            Double[] vars = getVariables(v1, "a");
+
+            if (vars[0] != null) {
+                op1 = vars[0];
+                if (components[0].charAt(0) == '-') {
+                    op1 = -1 * op1;
+                }
+            } else {
+                if (components[0].charAt(0) == '-') {
+                    op1 = -1 * Double.parseDouble(components[0].substring(1));
+                } else {
+                    op1 = Double.parseDouble(components[0]);
+                }
+            }
+
+        }
+        catch (NumberFormatException n)
+        {
+            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
+        }
 
     }
 
@@ -82,7 +109,7 @@ public class SquareRootConstruct extends HighLevelFunc {
         return components;
     }
 
-    public int getResult() {
+    public double getResult() {
         return result;
     }
 

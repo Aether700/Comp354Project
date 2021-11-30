@@ -6,6 +6,7 @@ import java.util.List;
 import NAR.Constructs.AddConstruct;
 import NAR.Constructs.DivideConstruct;
 import NAR.Constructs.IfElseConstruct;
+import NAR.Constructs.SquareRootConstruct;
 
 public class Parser 
 {
@@ -23,6 +24,7 @@ public class Parser
 		constructs.add(new IfElseConstruct());
 		constructs.add(new DivideConstruct());
 		constructs.add(new AddConstruct());
+		constructs.add(new SquareRootConstruct());
 	}
 	
 	/**
@@ -43,7 +45,9 @@ public class Parser
 			{
 				if (func.isCorrectSyntax(statement)) 
 				{
+
 					func.setArgs(statement);
+
 					func.execute();
 					return true;
 				}

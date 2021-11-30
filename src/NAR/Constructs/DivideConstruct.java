@@ -30,49 +30,47 @@ public class DivideConstruct extends HighLevelFunc {
         //TODO make sure components are not variables or parseInt will crash.
         //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
         String v1,v2;
-        if (components[0].charAt(0) == '-') {
-            v1 = components[0].substring(1);
-        }
-        else
-        {
-            v1=components[0];
-        }
-        if (components[1].charAt(0) == '-') {
-            v2 = components[1].substring(1);
-        }
-        else
-        {
-            v2=components[1];
-        }
-        Double[] vars=getVariables(v1,v2);
+        try {
+            if (components[0].charAt(0) == '-') {
+                v1 = components[0].substring(1);
+            } else {
+                v1 = components[0];
+            }
+            if (components[1].charAt(0) == '-') {
+                v2 = components[1].substring(1);
+            } else {
+                v2 = components[1];
+            }
+            Double[] vars = getVariables(v1, v2);
 
-        if(vars[0]!=null)
-        {
-            op1=vars[0];
-            if (components[0].charAt(0) == '-') {
-                op1 = -1 * op1;
-            }
-        }
-        else {
-            if (components[0].charAt(0) == '-') {
-                op1 = -1 * Double.parseDouble(components[0].substring(1));
+            if (vars[0] != null) {
+                op1 = vars[0];
+                if (components[0].charAt(0) == '-') {
+                    op1 = -1 * op1;
+                }
             } else {
-                op1 = Double.parseDouble(components[0]);
+                if (components[0].charAt(0) == '-') {
+                    op1 = -1 * Double.parseDouble(components[0].substring(1));
+                } else {
+                    op1 = Double.parseDouble(components[0]);
+                }
             }
-        }
-        if(vars[1]!=null)
-        {
-            op2=vars[1];
-            if (components[1].charAt(0) == '-') {
-                op2 = -1 * op2;
-            }
-        }
-        else {
-            if (components[1].charAt(0) == '-') {
-                op2 = -1 * Double.parseDouble(components[1].substring(1));
+            if (vars[1] != null) {
+                op2 = vars[1];
+                if (components[1].charAt(0) == '-') {
+                    op2 = -1 * op2;
+                }
             } else {
-                op2 = Double.parseDouble(components[1]);
+                if (components[1].charAt(0) == '-') {
+                    op2 = -1 * Double.parseDouble(components[1].substring(1));
+                } else {
+                    op2 = Double.parseDouble(components[1]);
+                }
             }
+        }
+        catch (NumberFormatException n)
+        {
+            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
         }
 
     }
