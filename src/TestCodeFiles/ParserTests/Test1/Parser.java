@@ -1,17 +1,11 @@
-package NAR;
+package TestCodeFiles.ParserTests.Test1;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import NAR.HighLevelFunc;
 
-import NAR.Constructs.AddConstruct;
-import NAR.Constructs.DivideConstruct;
-import NAR.Constructs.IfElseConstruct;
-import NAR.Constructs.SquareRootConstruct;
-
-import NAR.Constructs.IfElseConstruct;
-
-
+//Dummy singleton parser class with dummy HighLevelFunc objects used to test the parser
 public class Parser 
 {
 	private static Parser Instance = new Parser();
@@ -23,14 +17,12 @@ public class Parser
 	{
 		constructs = new ArrayList<HighLevelFunc>();
 		variables = new HashMap<String, Double>();
-		
-		//initialize and add HighLevelFunc objects here 
-		constructs.add(new IfElseConstruct());
-
-		constructs.add(new DivideConstruct());
-		constructs.add(new AddConstruct());
-		constructs.add(new SquareRootConstruct());
-
+	}
+	
+	public static void Initialize() 
+	{
+		Instance.constructs.add(new Add());
+		Instance.constructs.add(new Test());
 	}
 	
 	/**
@@ -51,9 +43,7 @@ public class Parser
 			{
 				if (func.isCorrectSyntax(statement)) 
 				{
-
 					func.setArgs(statement);
-
 					func.execute();
 					return true;
 				}
@@ -65,7 +55,7 @@ public class Parser
 		
 		//if no valid construct found print an error message and return false
 		String calledConstructName = statement.split(" ")[0];
-		Editor.printToConsole("Unknown construct '" + calledConstructName + "' found.");
+		System.out.println("Unknown construct '" + calledConstructName + "' found.");
 		return false;
 	}
 	
@@ -80,7 +70,7 @@ public class Parser
 	}
 	
 	/**
-	 * This method takes two parameters, a variable name, and it's associated number value. 
+	 * This method takes two parameters, a variable name, and itÅfs associated number value. 
 	 * It stores the variable name and number together in internal memory. 
 	 * It also can be used to store a new value for an already defined variable.
 	 * @param variable

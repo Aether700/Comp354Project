@@ -1,4 +1,4 @@
-package NAR;
+package TestCodeFiles.EditorTests;
 import javax.swing.*;
 import javax.swing.text.*;
 
@@ -6,6 +6,14 @@ import java.awt.*;
 import java.awt.event.*;
 
 import java.util.List;
+
+//this line includes the Parser used for test 2 and will be removed from the final build
+import TestCodeFiles.EditorTests.Test2.Parser; 
+import NAR.HighLevelFunc;
+
+/* Copy of the Editor class slightly modified so it can be used to run the editor tests described 
+ * in the report of the project. Note that this class is used to run both Test 1 and Test 2
+ */
 
 public class Editor 
 {
@@ -37,10 +45,12 @@ public class Editor
 		//hook up the run button to an anonymous class which will handle the button press
 		runButton.addActionListener(new ActionListener() 
 		{
-			//exact implementation of this function will need to be changed
+			// function called when the run button is pressed (for the first test)
 			public void actionPerformed(ActionEvent e) {
 				Editor.clearConsole();
-				RuntimeSystem.runCode(Editor.getCodeStr());
+				String code = Editor.getCodeStr();
+				Editor.printToConsole(code);
+				System.out.println("Run button pressed: " + code);
 			}
 		});
 		
@@ -63,7 +73,7 @@ public class Editor
 		//hook up the help button to an anonymous class which will handle the button press
 		helpButton.addActionListener(new ActionListener() 
 		{
-			//exact implementation of this function will need to be changed
+			//function called when the help button is pressed
 			public void actionPerformed(ActionEvent e) {
 				Editor.clearConsole();
 				Editor.displayHelpInformation();
