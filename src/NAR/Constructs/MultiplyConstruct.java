@@ -16,13 +16,12 @@ public class MultiplyConstruct extends HighLevelFunc {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^multiply (-?\\d+|\\w+|\\d+.\\d+) with (-?\\d+|\\w+|\\d+.\\d+)$")) {
             return true;
-            //check syntax of the construct to execute when the condition is true
+
         }
-        //^\s+add\s+\d+\s+to\s+\d+\s*$
-        //^add \d+ to \d+$
+
         return false;
     }
-    public Double[] getVariables(String arg1,String arg2)
+    private Double[] getVariables(String arg1,String arg2)
     {
 
         Double vals[]=new Double[2];
@@ -46,8 +45,7 @@ public class MultiplyConstruct extends HighLevelFunc {
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
-        //TODO make sure components are not variables or parseInt will crash.
-        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
+
         String v1,v2;
         try {
             if (components[0].charAt(0) == '-') {
@@ -89,7 +87,8 @@ public class MultiplyConstruct extends HighLevelFunc {
         }
         catch (NumberFormatException n)
         {
-            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
+            System.out.println("Error in operands (Undefined variable or incorrect format).");
+            System.exit(1);
         }
 
     }
@@ -98,20 +97,23 @@ public class MultiplyConstruct extends HighLevelFunc {
     @Override
     public void execute() {
 
-        Editor.printToConsole((op2 * op1));
+        Editor.printToConsole(op2 * op1);
     }
 
 
-    public static void main(String args[]) {
-        String statement = "multiply -2 with -9";
-        Editor.run();
-        Parser.checkUserInput(statement);
-    }
+
 
 
     @Override
     public String getHelpInformation() {
-        return null;
+        return "Multiply:\n"
+                + "   Syntax: multiply <optional \"-\"><variable/number> with <optional \"-\"><variable/number> "
+
+                + "\n   Multiplies operand 1(left operand) with operand 2(right operand) and prints the result "
+
+                + "\n   Example: multiply 3 with 5\n"
+                + "multiply 33 with y\n";
+
     }
 
     private String[] splitIntoComponents(String str) {

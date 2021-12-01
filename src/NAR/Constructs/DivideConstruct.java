@@ -16,10 +16,9 @@ public class DivideConstruct extends HighLevelFunc {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^divide (-?\\d+|\\w+|\\d+.\\d+) by (-?\\d+|\\w+|\\d+.\\d+)$")) {
             return true;
-            //check syntax of the construct to execute when the condition is true
+
         }
-        //^\s+add\s+\d+\s+to\s+\d+\s*$
-        //^add \d+ to \d+$
+
         return false;
     }
 
@@ -66,34 +65,36 @@ public class DivideConstruct extends HighLevelFunc {
                 } else {
                     op2 = Double.parseDouble(components[1]);
                 }
+
+            }
+            if(op2==0){
+                System.out.println("Divide by Zero Error: Right operand was 0.");
             }
         }
         catch (NumberFormatException n)
         {
-            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
+            System.out.println("Error in operands (Undefined variable or incorrect format).");
+            System.exit(1);
         }
+
 
     }
 
     @Override
     public void execute() {
-
-        if (op2 == 0) {
-            Editor.printToConsole("Undefined(Div by 0)");
-        } else {
-            Editor.printToConsole((op1 / op2));
+        if(op2==0){
+            Editor.printToConsole("Undefined: Div by 0");
         }
+        else{
+            Editor.printToConsole(op1 / op2);
+        }
+
+
     }
 
 
-    public static void main(String args[]) {
-        String statement = "divide 1y by x";
-        Editor.run();
-        Parser.defineVar("x",20.20);
-        Parser.defineVar("1y",200.20);
-        Parser.checkUserInput(statement);
-    }
-    public Double[] getVariables(String arg1,String arg2)
+
+    private Double[] getVariables(String arg1,String arg2)
     {
 
         Double vals[]=new Double[2];
@@ -117,7 +118,14 @@ public class DivideConstruct extends HighLevelFunc {
 
     @Override
     public String getHelpInformation() {
-        return null;
+        return "Divide:\n"
+                + "   Syntax: Divide <optional \"-\"><variable/number> by <optional \"-\"><variable/number> "
+
+                + "\n   Divides operand 1(left operand) by operand 2(right operand) and prints the result "
+                +"\nNote: Dividing by zero will give an error so operand 2 cannot be 0"
+                + "\n   Example: Divide 3.5 by 0.5\n"
+                + " Divide x by y\n";
+
     }
 
     private String[] splitIntoComponents(String str) {
@@ -126,7 +134,7 @@ public class DivideConstruct extends HighLevelFunc {
 
         int first = str.indexOf("divide ");
         int sec = str.indexOf("by ");
-        components[0] = str.substring(first + 7, sec).trim(); //retrieve condition
+        components[0] = str.substring(first + 7, sec).trim();
         int third = str.length();
         components[1] = str.substring(sec + 3, third).trim();
         int fourth = str.length();

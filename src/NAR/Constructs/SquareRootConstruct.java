@@ -8,14 +8,14 @@ public class SquareRootConstruct extends HighLevelFunc {
     private double op1, op2, result;
 
     public SquareRootConstruct() {
-        super("square");//putting square root gives unknown construct
+        super("square root");
     }
     @Override
     public boolean isCorrectSyntax(String statement) {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^square root of (\\d+|\\w+|\\d+.\\d+)$")) {
             return true;
-            //check syntax of the construct to execute when the condition is true
+
         }
         //^\s+add\s+\d+\s+to\s+\d+\s*$
         //^add \d+ to \d+$
@@ -25,8 +25,7 @@ public class SquareRootConstruct extends HighLevelFunc {
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
-        //TODO make sure components are not variables or parseInt will crash.
-        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
+
         String v1,v2;
         try {
             if (components[0].charAt(0) == '-') {
@@ -53,7 +52,8 @@ public class SquareRootConstruct extends HighLevelFunc {
         }
         catch (NumberFormatException n)
         {
-            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
+            System.out.println("Error in operands (Undefined variable or incorrect format).");
+            System.exit(1);
         }
 
     }
@@ -61,9 +61,9 @@ public class SquareRootConstruct extends HighLevelFunc {
     @Override
     public void execute() {
 
-        Editor.printToConsole((Math.sqrt(op1)));
+        Editor.printToConsole(Math.sqrt(op1));
     }
-    public Double[] getVariables(String arg1,String arg2)
+    private Double[] getVariables(String arg1,String arg2)
     {
 
         Double vals[]=new Double[2];
@@ -85,16 +85,19 @@ public class SquareRootConstruct extends HighLevelFunc {
         return vals;
     }
 
-    public static void main(String args[]) {
-        String statement = "square root of 9";
-        Editor.run();
-        Parser.checkUserInput(statement);
-    }
+
 
 
     @Override
     public String getHelpInformation() {
-        return null;
+        return "Square Root:\n"
+                + "   Syntax: square root of <variable/number> "
+
+                + "\nPrints the square root of operand 1"
+                +"\nNote: cannot be negative"
+                + "\n   Example: square root of 9 \n"
+                + "square root of x \n";
+
     }
 
     private String[] splitIntoComponents(String str) {
@@ -103,7 +106,7 @@ public class SquareRootConstruct extends HighLevelFunc {
 
         int first = str.indexOf("square root of ");
 
-        components[0] = str.substring(first + 15).trim(); //retrieve condition
+        components[0] = str.substring(first + 15).trim();
 
 
         return components;

@@ -18,16 +18,15 @@ public class AddConstruct extends HighLevelFunc {
             return true;
             //check syntax of the construct to execute when the condition is true
         }
-        //^\s+add\s+\d+\s+to\s+\d+\s*$
-        //^add \d+ to \d+$
+
         return false;
     }
 
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
-        //TODO make sure components are not variables or parseInt will crash.
-        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
+
+
         String v1,v2;
         try {
             if (components[0].charAt(0) == '-') {
@@ -69,11 +68,12 @@ public class AddConstruct extends HighLevelFunc {
         }
         catch (NumberFormatException n)
         {
-            Editor.printToConsole("Error in operands (Undefined variable or incorrect format).");
+            System.out.println("Error in operands (Undefined variable or incorrect format).");
+            System.exit(1);
         }
 
     }
-    public Double[] getVariables(String arg1,String arg2)
+    private Double[] getVariables(String arg1,String arg2)
     {
 
         Double vals[]=new Double[2];
@@ -98,22 +98,23 @@ public class AddConstruct extends HighLevelFunc {
     @Override
     public void execute() {
 
-        Editor.printToConsole((op1 + op2));
+        Editor.printToConsole(op1 + op2);
     }
 
 
-    public static void main(String args[]) {
-        String statement = "add 1y to x";
-        Editor.run();
-        Parser.defineVar("x",2.0);
-        //Parser.defineVar("1y",-69);
-        Parser.checkUserInput(statement);
-    }
+
 
 
     @Override
     public String getHelpInformation() {
-        return "Add Construct:\nSample Help";
+        return "Add:\n"
+                + "   Syntax: add <optional \"-\"><variable/number> to <optional \"-\"><variable/number> "
+
+                + "\n   Adds both the operands provided and prints the result "
+
+                + "\n   Example: add 3 to 5\n"
+                + "add 5 to x\n";
+
     }
 
     private String[] splitIntoComponents(String str) {

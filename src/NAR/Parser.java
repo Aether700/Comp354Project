@@ -4,10 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 
-import NAR.Constructs.AddConstruct;
-import NAR.Constructs.DivideConstruct;
-import NAR.Constructs.IfElseConstruct;
-import NAR.Constructs.SquareRootConstruct;
+import NAR.Constructs.*;
 
 import NAR.Constructs.IfElseConstruct;
 
@@ -26,9 +23,10 @@ public class Parser
 		
 		//initialize and add HighLevelFunc objects here 
 		constructs.add(new IfElseConstruct());
-
+		constructs.add(new MultiplyConstruct());
 		constructs.add(new DivideConstruct());
 		constructs.add(new AddConstruct());
+		constructs.add(new SubtractConstruct());
 		constructs.add(new SquareRootConstruct());
 
 	}
