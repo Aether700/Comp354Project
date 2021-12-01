@@ -7,6 +7,7 @@ import java.util.List;
 import NAR.Constructs.*;
 
 import NAR.Constructs.IfElseConstruct;
+import NAR.Constructs.SetConstruct;
 
 
 public class Parser 
@@ -28,7 +29,7 @@ public class Parser
 		constructs.add(new AddConstruct());
 		constructs.add(new SubtractConstruct());
 		constructs.add(new SquareRootConstruct());
-
+		constructs.add(new SetConstruct());
 	}
 	
 	/**
