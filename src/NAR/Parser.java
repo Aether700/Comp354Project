@@ -75,7 +75,8 @@ public class Parser
 	 * @param variable
 	 * @return
 	 */
-	public static boolean isVarDefined(String variable) {
+	public static boolean isVarDefined(String variable) 
+	{
 		return Instance.variables.containsKey(variable);
 	}
 	
