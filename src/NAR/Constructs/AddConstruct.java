@@ -18,6 +18,8 @@ public class AddConstruct extends HighLevelFunc
     {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^add -?[0-9]+ to -?[0-9]+$")
+        		|| lowerCase.matches("^add -?[0-9]+ to -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^add -?[0-9]+.[0-9]+ to -?[0-9]+$")
         		|| lowerCase.matches("^add -?[0-9]+.[0-9]+ to -?[0-9]+.[0-9]+$")
         		|| lowerCase.matches("^add " + VarRegex + " to -?[0-9]+$")
         		|| lowerCase.matches("^add -?[0-9]+ to " + VarRegex + "$")
