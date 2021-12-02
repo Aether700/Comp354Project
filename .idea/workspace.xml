@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d1e33ae8-927d-40d7-bc2d-0f52604ee41a" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/src/NAR/Constructs/AddConstruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Constructs/AddConstruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NAR/Constructs/DivideConstruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Constructs/DivideConstruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NAR/Constructs/MultiplyConstruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Constructs/MultiplyConstruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NAR/Constructs/SquareRootConstruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Constructs/SquareRootConstruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NAR/Constructs/SubtractConstruct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Constructs/SubtractConstruct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/NAR/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/NAR/Parser.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="216cPlgHVhAUwDtemtmFsgFJnid" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last.edited.regexp" value="Sample Text" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\LAP\IdeaProjects\COMP354Project\src\NAR\Constructs" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DivideConstruct" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="NAR.Constructs.DivideConstruct" />
+      <module name="COMP354Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d1e33ae8-927d-40d7-bc2d-0f52604ee41a" name="Default Changelist" comment="" />
+      <created>1637264958102</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1637264958102</updated>
+      <workItem from="1637264959124" duration="4038000" />
+      <workItem from="1637342834133" duration="222000" />
+      <workItem from="1637343069070" duration="830000" />
+      <workItem from="1637343987854" duration="676000" />
+      <workItem from="1637359452780" duration="109000" />
+      <workItem from="1637359596392" duration="4382000" />
+      <workItem from="1638220336177" duration="4093000" />
+      <workItem from="1638290319731" duration="4160000" />
+      <workItem from="1638308522168" duration="1705000" />
+      <workItem from="1638316284881" duration="2142000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1638318423210">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="175" width="1092" height="762" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638318423210" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1637266275921">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1637266275921" />
+    <state x="689" y="322" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1638318275295">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="689" y="322" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1638318275295" />
+    <state x="655" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1637359548620">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="655" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1637359548620" />
+    <state x="743" y="414" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1637265699484">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="414" width="433" height="217" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1637265699484" />
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom" timestamp="1638318360203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638318360203" />
+    <state width="1860" height="279" key="GridCell.Tab.0.center" timestamp="1638318360203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="279" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638318360203" />
+    <state width="1860" height="279" key="GridCell.Tab.0.left" timestamp="1638318360203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="279" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638318360203" />
+    <state width="1860" height="279" key="GridCell.Tab.0.right" timestamp="1638318360203">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="279" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638318360203" />
+    <state width="1860" height="344" key="GridCell.Tab.1.bottom" timestamp="1638295145008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="344" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1638295145008" />
+    <state width="1860" height="344" key="GridCell.Tab.1.center" timestamp="1638295145008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="344" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1638295145008" />
+    <state width="1860" height="344" key="GridCell.Tab.1.left" timestamp="1638295145008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="344" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1638295145008" />
+    <state width="1860" height="344" key="GridCell.Tab.1.right" timestamp="1638295145008">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1860" height="344" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1638295145008" />
+    <state x="731" y="454" key="ReplaceDuplicatesPrompt" timestamp="1638316644922">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="731" y="454" key="ReplaceDuplicatesPrompt/0.0.1920.1040@0.0.1920.1040" timestamp="1638316644922" />
+    <state x="509" y="256" width="931" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1638225140621">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="509" y="256" width="931" height="629" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1920.1040@0.0.1920.1040" timestamp="1638225140621" />
+    <state x="336" y="0" width="1424" height="717" key="dock-window-1" timestamp="1637266815959">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="336" y="0" width="1424" height="717" key="dock-window-1/0.0.1920.1040@0.0.1920.1040" timestamp="1637266815959" />
+    <state x="638" y="229" width="672" height="678" key="search.everywhere.popup" timestamp="1638308698523">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="638" y="229" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1638308698523" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/NAR/Constructs/DivideConstruct.java</url>
+          <line>16</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/NAR/Constructs/AddConstruct.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/NAR/Constructs/AddConstruct.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NumberFormatException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

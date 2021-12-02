@@ -3,8 +3,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+
+import NAR.Constructs.*;
+
 import NAR.Constructs.IfElseConstruct;
 import NAR.Constructs.SetConstruct;
+
 
 public class Parser 
 {
@@ -20,6 +24,11 @@ public class Parser
 		
 		//initialize and add HighLevelFunc objects here 
 		constructs.add(new IfElseConstruct());
+		constructs.add(new MultiplyConstruct());
+		constructs.add(new DivideConstruct());
+		constructs.add(new AddConstruct());
+		constructs.add(new SubtractConstruct());
+		constructs.add(new SquareRootConstruct());
 		constructs.add(new SetConstruct());
 	}
 	
@@ -41,7 +50,9 @@ public class Parser
 			{
 				if (func.isCorrectSyntax(statement)) 
 				{
+
 					func.setArgs(statement);
+
 					func.execute();
 					return true;
 				}
@@ -63,7 +74,8 @@ public class Parser
 	 * @param variable
 	 * @return
 	 */
-	public static boolean isVarDefined(String variable) {
+	public static boolean isVarDefined(String variable) 
+	{
 		return Instance.variables.containsKey(variable);
 	}
 	
