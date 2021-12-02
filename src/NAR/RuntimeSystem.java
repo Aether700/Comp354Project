@@ -53,6 +53,7 @@ public class RuntimeSystem {
 
 	public static void runCode(String str) {
 
+		Parser.clearVariables();
 		List<String> lines = listOfLines(str);
 
 		for (String line : lines) {
