@@ -5,116 +5,108 @@ import NAR.HighLevelFunc;
 import NAR.Parser;
 
 public class SquareRootConstruct extends HighLevelFunc {
-    private double op1, op2, result;
+	private static String VarRegex = "[a-z]+[0-9a-z]*";
+    private double numberValue;
 
     public SquareRootConstruct() {
         super("square root");
     }
+    
+    public boolean isCalled(String statement) 
+    {
+    	String[] words = statement.split(" ");
+    	if (words.length < 2) 
+    	{
+    		return false;
+    	}
+    	return words[0].equalsIgnoreCase("square") && words[1].equalsIgnoreCase("root"); 
+    }
+    
     @Override
-    public boolean isCorrectSyntax(String statement) {
+    public boolean isCorrectSyntax(String statement) 
+    {
         String lowerCase = statement.toLowerCase();
-        if (lowerCase.matches("^square root of (\\d+|\\w+|\\d+.\\d+)$")) {
+        if (lowerCase.matches("^square root of -?[0-9]+$")
+        		|| lowerCase.matches("^square root of -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^square root of " + VarRegex)) 
+        {
+        	String numberVarStr = getNumberVarStr(lowerCase);
+        	if (!isValidValue(numberVarStr)) 
+        	{
+        		Editor.printToConsole("Unknown variable \'" + numberVarStr + "\'");
+        		return false;
+        	}
             return true;
-
         }
-        //^\s+add\s+\d+\s+to\s+\d+\s*$
-        //^add \d+ to \d+$
+        
+        Editor.printToConsole("Incorrect syntax for the square root construct");
         return false;
     }
 
     @Override
-    public void setArgs(String statement) {
-        String[] components = splitIntoComponents(statement.toLowerCase());
-
-        String v1,v2;
-        try {
-            if (components[0].charAt(0) == '-') {
-                v1 = components[0].substring(1);
-            } else {
-                v1 = components[0];
-            }
-
-            Double[] vars = getVariables(v1, "a");
-
-            if (vars[0] != null) {
-                op1 = vars[0];
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * op1;
-                }
-            } else {
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * Double.parseDouble(components[0].substring(1));
-                } else {
-                    op1 = Double.parseDouble(components[0]);
-                }
-            }
-
-        }
-        catch (NumberFormatException n)
-        {
-            System.out.println("Error in operands (Undefined variable or incorrect format).");
-            System.exit(1);
-        }
-
+    public void setArgs(String statement) 
+    {
+    	numberValue = getValue(getNumberVarStr(statement.toLowerCase()));
     }
 
     @Override
-    public void execute() {
-
-        Editor.printToConsole(Math.sqrt(op1));
-    }
-    private Double[] getVariables(String arg1,String arg2)
+    public void execute() 
     {
-
-        Double vals[]=new Double[2];
-
-        if(Parser.isVarDefined(arg1))
-        {
-            vals[0]=Parser.getVarValue(arg1);
-        }
-        else
-        {
-            vals[0]=null;
-        }
-        if (Parser.isVarDefined(arg2)) {
-            vals[1]=Parser.getVarValue(arg2);
-        }
-        else {
-            vals[1]=null;
-        }
-        return vals;
+        Editor.printToConsole(Math.sqrt(numberValue));
     }
-
-
-
 
     @Override
     public String getHelpInformation() {
-        return "Square Root:\n"
-                + "   Syntax: square root of <variable/number> "
+        return "Square Root:"
+                + "\n   Syntax: square root of <variable/number> "
 
-                + "\nPrints the square root of operand 1"
-                +"\nNote: cannot be negative"
-                + "\n   Example: square root of 9 \n"
-                + "square root of x \n";
-
+                + "\n   Prints the square root of the provided number/variable"
+                + "\n   Note: cannot be negative"
+                + "\n   Example: square root of 9"
+                + "\n   square root of x\n\n";
     }
 
-    private String[] splitIntoComponents(String str) {
-        String[] components = new String[2];
-
-
+    private String getNumberVarStr(String str) 
+    {
         int first = str.indexOf("square root of ");
-
-        components[0] = str.substring(first + 15).trim();
-
-
-        return components;
+        return str.substring(first + 15).trim();
     }
-
-    public double getResult() {
-        return result;
+    
+    private double getValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return Parser.getVarValue(statement);
+    	}
+    	
+    	try 
+    	{
+    		return Double.parseDouble(statement);
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		System.out.println("Unknown variable/number \'" + statement + "\'");
+    		System.exit(1);
+    	}
+    	
+    	return 0.0f; //required by compiler
     }
-
-
+    
+    private boolean isValidValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return true;
+    	}
+    	
+    	try 
+    	{
+    		Double.parseDouble(statement);
+    		return true;
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		return false;
+    	}
+    }
 }

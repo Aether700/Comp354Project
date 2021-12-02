@@ -4,120 +4,114 @@ import NAR.Editor;
 import NAR.HighLevelFunc;
 import NAR.Parser;
 
-public class SubtractConstruct extends HighLevelFunc {
-    private Double op1, op2, result;
+public class SubtractConstruct extends HighLevelFunc 
+{
+	private static String VarRegex = "[a-z]+[0-9a-z]*";
+	private Double op1, op2;
 
     public SubtractConstruct() {
         super("subtract");
     }
-
+    
     @Override
-    public boolean isCorrectSyntax(String statement) {
+    public boolean isCorrectSyntax(String statement) 
+    {
         String lowerCase = statement.toLowerCase();
-        if (lowerCase.matches("^sub (-?\\d+|\\w+|\\d+.\\d+) from (-?\\d+|\\w+|\\d+.\\d+)$")) {
-            return true;
-
+        if (lowerCase.matches("^subtract -?[0-9]+ from -?[0-9]+$")
+        		|| lowerCase.matches("^subtract -?[0-9]+.[0-9]+ from -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^subtract " + VarRegex + " from -?[0-9]+$")
+        		|| lowerCase.matches("^subtract -?[0-9]+ from " + VarRegex + "$")
+        		|| lowerCase.matches("^subtract " + VarRegex + " from -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^subtract -?[0-9]+.[0-9]+ from " + VarRegex + "$")
+        		|| lowerCase.matches("^subtract " + VarRegex + " from " + VarRegex + "$"))
+        {
+        	String[] components = splitIntoComponents(lowerCase);
+        	
+        	if (!isValidValue(components[0])) 
+        	{
+        		Editor.printToConsole("Unknown variable \'" + components[0] + "\'");
+        		return false;
+        	}
+        	
+        	if (!isValidValue(components[1])) 
+        	{
+        		Editor.printToConsole("Unknown variable \'" + components[1] + "\'");
+        		return false;
+        	}
+        	
+        	return true;
         }
 
+        Editor.printToConsole("Incorrect syntax for the subtract construct");
         return false;
     }
-    private Double[] getVariables(String arg1,String arg2)
-    {
-
-        Double vals[]=new Double[2];
-
-        if(Parser.isVarDefined(arg1))
-        {
-            vals[0]=Parser.getVarValue(arg1);
-        }
-        else
-        {
-            vals[0]=null;
-        }
-        if (Parser.isVarDefined(arg2)) {
-            vals[1]=Parser.getVarValue(arg2);
-        }
-        else {
-            vals[1]=null;
-        }
-        return vals;
-    }
+    
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
 
-        String v1,v2;
-        try {
-            if (components[0].charAt(0) == '-') {
-                v1 = components[0].substring(1);
-            } else {
-                v1 = components[0];
-            }
-            if (components[1].charAt(0) == '-') {
-                v2 = components[1].substring(1);
-            } else {
-                v2 = components[1];
-            }
-            Double[] vars = getVariables(v1, v2);
-
-            if (vars[0] != null) {
-                op1 = vars[0];
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * op1;
-                }
-            } else {
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * Double.parseDouble(components[0].substring(1));
-                } else {
-                    op1 = Double.parseDouble(components[0]);
-                }
-            }
-            if (vars[1] != null) {
-                op2 = vars[1];
-                if (components[1].charAt(0) == '-') {
-                    op2 = -1 * op2;
-                }
-            } else {
-                if (components[1].charAt(0) == '-') {
-                    op2 = -1 * Double.parseDouble(components[1].substring(1));
-                } else {
-                    op2 = Double.parseDouble(components[1]);
-                }
-            }
-        }
-        catch (NumberFormatException n)
-        {
-            System.out.println("Error in operands (Undefined variable or incorrect format).");
-            System.exit(1);
-        }
-
+        op1 = getValue(components[0]);
+        op2 = getValue(components[1]);
     }
 
-    @Override
-    public void execute() {
 
+    @Override
+    public void execute() 
+    {
         Editor.printToConsole(op2 - op1);
     }
 
-
-
-
-
     @Override
     public String getHelpInformation() {
-        return "Subtract:\n"
-                + "   Syntax: subtract <optional \"-\"><variable/number> from <optional \"-\"><variable/number> "
-
-                + "\n   Subtractrs operand 1(left operand) from operand 2(right operand) and prints the result "
-
-                + "\n   Example: subtract 3 from 5\n"
-                + "subtract x to y\n";
-
+    	return "Subtract:"
+    			+ "\n   Syntax: subtract <variable/number> from <variable/number> "
+    			
+                + "\n   Subtracts the left operand from the right operand and prints the result"
+                + "\n   Example: subtract 3 from 5"
+                + "\n   subtract x from y\n\n";
+    	
+    }
+    
+    private double getValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return Parser.getVarValue(statement);
+    	}
+    	
+    	try 
+    	{
+    		return Double.parseDouble(statement);
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		System.out.println("Unknown variable/number \'" + statement + "\'");
+    		System.exit(1);
+    	}
+    	
+    	return 0.0f; //required by compiler
+    }
+    
+    private boolean isValidValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return true;
+    	}
+    	
+    	try 
+    	{
+    		Double.parseDouble(statement);
+    		return true;
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		return false;
+    	}
     }
 
     private String[] splitIntoComponents(String str) {
         String[] components = new String[2];
-
 
         int first = str.indexOf("subtract ");
         int sec = str.indexOf("from ");
@@ -125,15 +119,6 @@ public class SubtractConstruct extends HighLevelFunc {
         int third = str.length();
         components[1] = str.substring(sec + 5, third).trim();
 
-        int fourth = str.length();
-
-
         return components;
     }
-
-    public double getResult() {
-        return result;
-    }
-
-
 }

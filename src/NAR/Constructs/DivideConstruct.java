@@ -4,8 +4,10 @@ import NAR.Editor;
 import NAR.HighLevelFunc;
 import NAR.Parser;
 
-public class DivideConstruct extends HighLevelFunc {
-    private double op1, op2, result;
+public class DivideConstruct extends HighLevelFunc 
+{
+	private static String VarRegex = "[a-z]+[0-9a-z]*";
+    private double op1, op2;
 
     public DivideConstruct() {
         super("divide");
@@ -14,11 +16,40 @@ public class DivideConstruct extends HighLevelFunc {
     @Override
     public boolean isCorrectSyntax(String statement) {
         String lowerCase = statement.toLowerCase();
-        if (lowerCase.matches("^divide (-?\\d+|\\w+|\\d+.\\d+) by (-?\\d+|\\w+|\\d+.\\d+)$")) {
-            return true;
-
+        if (lowerCase.matches("^divide -?[0-9]+ by -?[0-9]+$")
+        		|| lowerCase.matches("^divide -?[0-9]+.[0-9]+ by -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^divide " + VarRegex + " by -?[0-9]+$")
+        		|| lowerCase.matches("^divide -?[0-9]+ by " + VarRegex + "$")
+        		|| lowerCase.matches("^divide " + VarRegex + " by -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^divide -?[0-9]+.[0-9]+ by " + VarRegex + "$")
+        		|| lowerCase.matches("^divide " + VarRegex + " by " + VarRegex + "$")) 
+        {
+        	String[] components = splitIntoComponents(lowerCase);
+        	
+        	if (!isValidValue(components[0])) 
+        	{
+        		Editor.printToConsole("Unknown variable \'" + components[0] + "\'");
+        		return false;
+        	}
+        	
+        	if (isValidValue(components[1])) 
+        	{
+        		double denominator = getValue(components[1]);
+        		if (denominator == 0.0f) 
+        		{
+        			Editor.printToConsole("Division by zero is undefined and cannot be executed.");
+        			return false;
+        		}
+        		return true;
+        	}
+        	else 
+        	{
+        		Editor.printToConsole("Unknown variable \'" + components[1] + "\'");
+        		return false;
+        	}
         }
 
+        Editor.printToConsole("Incorrect syntax for the divide construct");
         return false;
     }
 
@@ -26,127 +57,77 @@ public class DivideConstruct extends HighLevelFunc {
     @Override
     public void setArgs(String statement) {
         String[] components = splitIntoComponents(statement.toLowerCase());
-        //TODO make sure components are not variables or parseInt will crash.
-        //Double[] vars=getVariables(components[0].substring(1),components[1].substring(1));
-        String v1,v2;
-        try {
-            if (components[0].charAt(0) == '-') {
-                v1 = components[0].substring(1);
-            } else {
-                v1 = components[0];
-            }
-            if (components[1].charAt(0) == '-') {
-                v2 = components[1].substring(1);
-            } else {
-                v2 = components[1];
-            }
-            Double[] vars = getVariables(v1, v2);
-
-            if (vars[0] != null) {
-                op1 = vars[0];
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * op1;
-                }
-            } else {
-                if (components[0].charAt(0) == '-') {
-                    op1 = -1 * Double.parseDouble(components[0].substring(1));
-                } else {
-                    op1 = Double.parseDouble(components[0]);
-                }
-            }
-            if (vars[1] != null) {
-                op2 = vars[1];
-                if (components[1].charAt(0) == '-') {
-                    op2 = -1 * op2;
-                }
-            } else {
-                if (components[1].charAt(0) == '-') {
-                    op2 = -1 * Double.parseDouble(components[1].substring(1));
-                } else {
-                    op2 = Double.parseDouble(components[1]);
-                }
-
-            }
-            if(op2==0){
-                System.out.println("Divide by Zero Error: Right operand was 0.");
-            }
-        }
-        catch (NumberFormatException n)
-        {
-            System.out.println("Error in operands (Undefined variable or incorrect format).");
-            System.exit(1);
-        }
-
-
+        
+        op1 = getValue(components[0]);
+        op2 = getValue(components[1]);
     }
 
     @Override
-    public void execute() {
-        if(op2==0){
-            Editor.printToConsole("Undefined: Div by 0");
-        }
-        else{
-            Editor.printToConsole(op1 / op2);
-        }
-
-
-    }
-
-
-
-    private Double[] getVariables(String arg1,String arg2)
+    public void execute() 
     {
-
-        Double vals[]=new Double[2];
-
-        if(Parser.isVarDefined(arg1))
-        {
-            vals[0]=Parser.getVarValue(arg1);
-        }
-        else
-        {
-            vals[0]=null;
-        }
-        if (Parser.isVarDefined(arg2)) {
-            vals[1]=Parser.getVarValue(arg2);
-        }
-        else {
-            vals[1]=null;
-        }
-        return vals;
+        Editor.printToConsole(op1 / op2);
     }
 
     @Override
     public String getHelpInformation() {
         return "Divide:\n"
-                + "   Syntax: Divide <optional \"-\"><variable/number> by <optional \"-\"><variable/number> "
+                + "   Syntax: Divide <variable/number> by <variable/number>\n"
 
-                + "\n   Divides operand 1(left operand) by operand 2(right operand) and prints the result "
-                +"\nNote: Dividing by zero will give an error so operand 2 cannot be 0"
-                + "\n   Example: Divide 3.5 by 0.5\n"
-                + " Divide x by y\n";
+                + "\n   Divides the left operand by the right operand and prints the result "
+                + "\n   Note: Dividing by zero will give an error so operand 2 cannot be 0"
+                + "\n   Example: Divide 3.5 by 0.5"
+                + "\n   Divide x by y\n\n";
 
     }
 
     private String[] splitIntoComponents(String str) {
         String[] components = new String[2];
 
-
         int first = str.indexOf("divide ");
         int sec = str.indexOf("by ");
         components[0] = str.substring(first + 7, sec).trim();
         int third = str.length();
         components[1] = str.substring(sec + 3, third).trim();
-        int fourth = str.length();
-
-
 
         return components;
     }
 
-    public double getResult() {
-        return result;
+    private boolean isValidValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return true;
+    	}
+    	
+    	try 
+    	{
+    		Double.parseDouble(statement);
+    		return true;
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		return false;
+    	}
     }
-
-
+    
+    private double getValue(String statement) 
+    {
+    	if (Parser.isVarDefined(statement)) 
+    	{
+    		return Parser.getVarValue(statement);
+    	}
+    	
+    	try 
+    	{
+    		return Double.parseDouble(statement);
+    	}
+    	catch(NumberFormatException num)
+    	{
+    		System.out.println("Unknown variable/number \'" + statement + "\'");
+    		System.exit(1);
+    	}
+    	
+    	return 0.0f; //required by compiler
+    }
+    
 }

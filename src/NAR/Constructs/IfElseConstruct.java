@@ -281,7 +281,7 @@ public class IfElseConstruct extends HighLevelFunc
 		//Y is not smaller than 3
 		private static boolean hasProperStructure(String statement) 
 		{
-			final String regexVar = "[0-9a-z]*[a-z][0-9a-z]*";
+			final String regexVar = "[a-z]+[0-9a-z]*";
 			String lowerCase = statement.toLowerCase().trim();
 			
 			

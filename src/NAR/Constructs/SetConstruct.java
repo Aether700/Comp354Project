@@ -2,11 +2,11 @@ package NAR.Constructs;
 
 import NAR.Editor;
 import NAR.HighLevelFunc;
-import TestCodeFiles.ParserTests.Test1.Parser;
+import NAR.Parser;
 
 public class SetConstruct extends HighLevelFunc 
 {
-	private static String VarRegex = "[0-9a-z]*[a-z][0-9a-z]*";
+	private static String VarRegex = "[a-z]+[0-9a-z]*";
 	
 	private String varName;
 	private double value;
@@ -20,7 +20,10 @@ public class SetConstruct extends HighLevelFunc
 	{
 		String lowerCase = statement.toLowerCase();
 		if (lowerCase.matches("set -?[0-9]+.[0-9]+ to -?[0-9]+.[0-9]+")
-				|| lowerCase.matches("set -?[0-9]+.[0-9]+ to " + VarRegex)) 
+				|| lowerCase.matches("set -?[0-9]+ to -?[0-9]+.[0-9]+")
+				|| lowerCase.matches("set -?[0-9]+.[0-9]+ to -?[0-9]+")
+				|| lowerCase.matches("set -?[0-9]+.[0-9]+ to " + VarRegex)
+				|| lowerCase.matches("set -?[0-9]+ to " + VarRegex)) 
 		{
 			Editor.printToConsole("Set is used to define a variable, please provide a valid variable name.");
 		}
@@ -47,6 +50,7 @@ public class SetConstruct extends HighLevelFunc
 	public void execute() 
 	{
 		Parser.defineVar(varName, value);
+		Editor.printToConsole(varName + " was set to " + value);
 	}
 
 	public String getHelpInformation() 
