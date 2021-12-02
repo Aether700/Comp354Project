@@ -18,6 +18,8 @@ public class MultiplyConstruct extends HighLevelFunc
     {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^multiply -?[0-9]+ by -?[0-9]+$")
+        		|| lowerCase.matches("^multiply -?[0-9]+ by -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^multiply -?[0-9]+.[0-9]+ by -?[0-9]+$")
         		|| lowerCase.matches("^multiply -?[0-9]+.[0-9]+ by -?[0-9]+.[0-9]+$")
         		|| lowerCase.matches("^multiply " + VarRegex + " by -?[0-9]+$")
         		|| lowerCase.matches("^multiply -?[0-9]+ by " + VarRegex + "$")

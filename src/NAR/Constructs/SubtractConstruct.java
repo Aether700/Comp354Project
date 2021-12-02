@@ -18,6 +18,8 @@ public class SubtractConstruct extends HighLevelFunc
     {
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^subtract -?[0-9]+ from -?[0-9]+$")
+        		|| lowerCase.matches("^subtract -?[0-9]+ from -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^subtract -?[0-9]+.[0-9]+ from -?[0-9]+$")
         		|| lowerCase.matches("^subtract -?[0-9]+.[0-9]+ from -?[0-9]+.[0-9]+$")
         		|| lowerCase.matches("^subtract " + VarRegex + " from -?[0-9]+$")
         		|| lowerCase.matches("^subtract -?[0-9]+ from " + VarRegex + "$")

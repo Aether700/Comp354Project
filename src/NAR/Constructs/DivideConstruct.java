@@ -18,6 +18,8 @@ public class DivideConstruct extends HighLevelFunc
         String lowerCase = statement.toLowerCase();
         if (lowerCase.matches("^divide -?[0-9]+ by -?[0-9]+$")
         		|| lowerCase.matches("^divide -?[0-9]+.[0-9]+ by -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^divide -?[0-9]+ by -?[0-9]+.[0-9]+$")
+        		|| lowerCase.matches("^divide -?[0-9]+.[0-9]+ by -?[0-9]+$")
         		|| lowerCase.matches("^divide " + VarRegex + " by -?[0-9]+$")
         		|| lowerCase.matches("^divide -?[0-9]+ by " + VarRegex + "$")
         		|| lowerCase.matches("^divide " + VarRegex + " by -?[0-9]+.[0-9]+$")

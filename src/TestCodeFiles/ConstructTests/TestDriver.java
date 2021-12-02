@@ -52,9 +52,25 @@ public class TestDriver
         RuntimeSystem.runCode(code);
 	}
 	
+	private static void LoopTest() 
+	{
+		String code = "loop 10.9 times and do Add 2 to 1.5";
+        Editor.run();
+        RuntimeSystem.runCode(code);
+	}
+	
+	private static void IfElseTest() 
+	{
+		String code = "if 3 is less than 5 do subtract 2 from 5\n"
+				+ "if 3 is greater than 5 do subtract 2 from 5 else do add 2 to 5\n"
+				+ "if 3 is less than 5 do subtract 2 from 5 else do add 2 to 5\n";
+		Editor.run();
+        RuntimeSystem.runCode(code);
+	}
+	
     public static void main(String args[])
     {
-        int testIndex = 0; //change to select which test to run
+        int testIndex = 7; //change to select which test to run
     	
         switch(testIndex) 
         {
@@ -81,9 +97,17 @@ public class TestDriver
         case 5:
         	SetTest();
         	break;
+        
+        case 6:
+        	LoopTest();
+        	break;
+        
+        case 7:
+        	IfElseTest();
+        	break;
         	
         default:
-        	System.out.println("Incorrect test please select a test index between 0 and 5 inclusively");
+        	System.out.println("Incorrect test please select a test index between 0 and 7 inclusively");
         }
     	
     }
