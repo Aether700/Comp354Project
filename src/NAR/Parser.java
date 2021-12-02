@@ -109,4 +109,9 @@ public class Parser
 	public static List<HighLevelFunc> getFuncList(){
 		return Instance.constructs;
 	}
+	
+	public static void clearVariables() 
+	{
+		Instance.variables.clear();
+	}
 }
